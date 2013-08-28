@@ -6,8 +6,6 @@
  * @link https://github.com/Dev7studios/Dev7studios-Meta-Box-Framework
  * @version 1.0.1
  * @license MIT
- * @updates Matt Cram
- * @link https://github.com/cramdesign/dev7_meta_box_framework
  */
 
 if( !class_exists( 'Dev7_Meta_Box_Framework' ) ) {
