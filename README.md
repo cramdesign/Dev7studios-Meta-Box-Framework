@@ -20,21 +20,21 @@ function add_custom_meta_boxes() {
 		'fields' => array(
 			array(
 	            'id' => 'text',
-	            'title' => 'Text',
+	            'label' => 'Text',
 	            'desc' => 'This is a description.',
 	            'type' => 'text',
 	            'std' => 'This is std'
 	        ),
 	        array(
 	            'id' => 'textarea',
-	            'title' => 'Textarea',
+	            'label' => 'Textarea',
 	            'desc' => 'This is a description.',
 	            'type' => 'textarea',
 	            'std' => 'This is std'
 	        ),
 	        array(
 	            'id' => 'select',
-	            'title' => 'Select',
+	            'label' => 'Select',
 	            'desc' => 'This is a description.',
 	            'type' => 'select',
 	            'std' => 'green',
@@ -46,7 +46,7 @@ function add_custom_meta_boxes() {
 	        ),
 	        array(
 	            'id' => 'radio',
-	            'title' => 'Radio',
+	            'label' => 'Radio',
 	            'desc' => 'This is a description.',
 	            'type' => 'radio',
 	            'std' => 'green',
@@ -58,14 +58,14 @@ function add_custom_meta_boxes() {
 	        ),
 	        array(
 	            'id' => 'checkbox',
-	            'title' => 'Checkbox',
+	            'label' => 'Checkbox',
 	            'desc' => 'This is a description.',
 	            'type' => 'checkbox',
 	            'std' => 1
 	        ),
 	        array(
 	            'id' => 'checkboxes',
-	            'title' => 'Checkboxes',
+	            'label' => 'Checkboxes',
 	            'desc' => 'This is a description.',
 	            'type' => 'checkboxes',
 	            'std' => array(
@@ -94,7 +94,7 @@ $my_field = get_post_meta(get_the_ID(), 'my_field_id', true);
 A field has the following structure:
 
 * `id` (required) - The ID of the field (must be unique)
-* `title` - The title of the field
+* `label` - The label of the field
 * `desc` - The field description
 * `type` (required) - The type of field (see list below)
 * `std` - The default value of the field

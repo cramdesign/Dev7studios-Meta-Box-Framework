@@ -4,8 +4,10 @@
  * 
  * @author Gilbert Pellegrom
  * @link https://github.com/Dev7studios/Dev7studios-Meta-Box-Framework
- * @version 1.0
+ * @version 1.0.1
  * @license MIT
+ * @updates Matt Cram
+ * @link https://github.com/cramdesign/dev7_meta_box_framework
  */
 
 if( !class_exists( 'Dev7_Meta_Box_Framework' ) ) {
@@ -33,7 +35,7 @@ if( !class_exists( 'Dev7_Meta_Box_Framework' ) ) {
 			foreach( $dev7_meta_boxes as $meta_box ){
 				if( is_array($meta_box['pages']) ){
 					foreach( $meta_box['pages'] as $page ){
-						add_meta_box( $meta_box['id'], $meta_box['title'], array(&$this, 'meta_box_output'), $page, $meta_box['context'], $meta_box['priority'], array('dev7_meta_box' => $meta_box) );
+						add_meta_box( $meta_box['id'].'_mb', $meta_box['title'], array(&$this, 'meta_box_output'), $page, $meta_box['context'], $meta_box['priority'], array('dev7_meta_box' => $meta_box) );
 					}
 				} else {
 					add_meta_box( $meta_box['id'], $meta_box['title'], array(&$this, 'meta_box_output'), $meta_box['pages'], $meta_box['context'], $meta_box['priority'], array('dev7_meta_box' => $meta_box) );	
@@ -88,6 +90,44 @@ if( !class_exists( 'Dev7_Meta_Box_Framework' ) ) {
 			foreach( $dev7_meta_boxes as $meta_box ){
 				if( isset($args['args']['dev7_meta_box']['id']) && $args['args']['dev7_meta_box']['id'] == $meta_box['id'] ){
 					if( isset($meta_box['fields']) && is_array($meta_box['fields']) ){
+					
+						?>
+					
+						<style>
+							#poststuff .postbox[id*="_mb"] .inside {
+								margin: 0;
+								padding: 0;
+							}
+							table.meta {
+								border-collapse: collapse;
+								width: 100%;
+								margin: 0;
+							}
+							table.meta th, table.meta td {
+								padding: 1em;
+								text-align: left;
+								vertical-align: top;
+							}
+							table.meta tr + tr th, table.meta tr + tr td {
+								border-top: 1px solid #ddd;
+							}
+							table.meta th {
+								width: 25%;
+								background: #eee;
+							}
+							table.meta input[type="text"], table.meta textarea {
+								width: 100%;
+							}
+							table.meta textarea {
+								height: 150px;
+								resize: vertical;
+							}
+						</style>
+					
+						<?php
+
+						echo '<table class="meta">';
+
 						foreach( $meta_box['fields'] as $field ){
 							if( isset($field['id']) && isset($field['type']) ){
 								$value = get_post_meta( $post->ID, $field['id'], true );
@@ -100,25 +140,22 @@ if( !class_exists( 'Dev7_Meta_Box_Framework' ) ) {
 					    		    }
 					    		}
 								
-								echo '<p>';
+								echo '<tr>';
 								
-								if( isset($field['name']) && $field['name'] ){
-									echo '<label for="'. $field['id'] .'"><strong>'. $field['name'] .'</strong></label> ';
-								}
-								if( isset($field['desc']) && $field['desc'] ){
-									echo '<span class="help">'. $field['desc'] .'</span>';
+								if( isset($field['label']) && $field['label'] ){
+									echo '<th><label for="'. $field['id'] .'">'. $field['label'] .'</label></th> ';
 								}
 								
-								echo '<br />';
+								echo '<td>';
 			
 								switch( $field['type'] ){
 					    		    case 'text':
 					    		        $value = esc_attr(stripslashes($value));
-					    		        echo '<input type="text" name="'. $field['id'] .'" id="'. $field['id'] .'" value="'. $value .'" style="width:100%" />';
+					    		        echo '<input type="text" name="'. $field['id'] .'" id="'. $field['id'] .'" value="'. $value .'" />';
 					    		        break;
 					    		    case 'textarea':
 					    		        $value = esc_html(stripslashes($value));
-					    		        echo '<textarea name="'. $field['id'] .'" id="'. $field['id'] .'" style="width:100%;height:150px;">'. $value .'</textarea>';
+					    		        echo '<textarea name="'. $field['id'] .'" id="'. $field['id'] .'">'. $value .'</textarea>';
 					    		        break;
 					    		    case 'select':
 					    		        $value = esc_html(esc_attr($value));
@@ -141,7 +178,7 @@ if( !class_exists( 'Dev7_Meta_Box_Framework' ) ) {
 					    		    case 'checkbox':
 					    		        $value = esc_attr(stripslashes($value));
 					    		        echo '<input type="hidden" name="'. $field['id'] .'" value="0" />';
-					    		        echo '<label><input type="checkbox" name="'. $field['id'] .'" id="'. $field['id'] .'" value="1"'. (($value) ? ' checked="checked"' : '') .' /> '. $desc .'</label>';
+					    		        echo '<label><input type="checkbox" name="'. $field['id'] .'" id="'. $field['id'] .'" value="1"'. (($value) ? ' checked="checked"' : '') .' /></label>';
 					    		        break;
 					    		    case 'checkboxes':
 					    		    	if( isset($field['choices']) ){
@@ -159,9 +196,17 @@ if( !class_exists( 'Dev7_Meta_Box_Framework' ) ) {
 					        		    break;
 								}
 								
-								echo '</p>';
+								if( isset($field['desc']) && $field['desc'] ){
+									echo '<p class="description">'. $field['desc'] .'</p>';
+								}
+								
+								echo '</td></tr>';
+								
 							}
-						}
+						} // end foreach field
+						
+						echo '</table>';
+						
 					}
 				}
 			}
