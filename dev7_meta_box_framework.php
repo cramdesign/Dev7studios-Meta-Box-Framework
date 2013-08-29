@@ -4,7 +4,7 @@
  * 
  * @author Gilbert Pellegrom
  * @link https://github.com/Dev7studios/Dev7studios-Meta-Box-Framework
- * @version 1.0.1
+ * @version 1.0.2
  * @license MIT
  */
 
@@ -176,7 +176,7 @@ if( !class_exists( 'Dev7_Meta_Box_Framework' ) ) {
 					    		    case 'checkbox':
 					    		        $value = esc_attr(stripslashes($value));
 					    		        echo '<input type="hidden" name="'. $field['id'] .'" value="0" />';
-					    		        echo '<label><input type="checkbox" name="'. $field['id'] .'" id="'. $field['id'] .'" value="1"'. (($value) ? ' checked="checked"' : '') .' /></label>';
+					    		        echo '<label><input type="checkbox" name="'. $field['id'] .'" id="'. $field['id'] .'" value="1"'. (($value) ? ' checked="checked"' : '') .' /> '.$field['desc'].'</label>';
 					    		        break;
 					    		    case 'checkboxes':
 					    		    	if( isset($field['choices']) ){
@@ -194,7 +194,7 @@ if( !class_exists( 'Dev7_Meta_Box_Framework' ) ) {
 					        		    break;
 								}
 								
-								if( isset($field['desc']) && $field['desc'] ){
+								if( isset($field['desc']) && $field['desc'] && 'checkbox' != $field['type'] ){
 									echo '<p class="description">'. $field['desc'] .'</p>';
 								}
 								
