@@ -12,72 +12,72 @@ include('dev7_meta_box_framework.php');
 
 function add_custom_meta_boxes() {
 	$meta_box = array(
-		'id'         => 'dev7_page_settings', // Meta box ID
-		'title'      => 'Page Settings', // Meta box title
-		'pages'  	 => array('post', 'page'), // Post types this meta box should be shown on
-		'context'    => 'normal', // Meta box context
-		'priority'   => 'high', // Meta box priority
-		'fields' => array(
+		'id'		=> 'dev7_page_settings', // Meta box ID
+		'title'		=> 'Page Settings', // Meta box title
+		'pages'		=> array('post', 'page'), // Post types this meta box should be shown on
+		'context'	=> 'normal', // Meta box context
+		'priority'	=> 'high', // Meta box priority
+		'fields'	=> array(
 			array(
-	            'id' => 'text',
-	            'label' => 'Text',
-	            'desc' => 'This is a description.',
-	            'type' => 'text',
-	            'std' => 'This is std'
-	        ),
-	        array(
-	            'id' => 'textarea',
-	            'label' => 'Textarea',
-	            'desc' => 'This is a description.',
-	            'type' => 'textarea',
-	            'std' => 'This is std'
-	        ),
-	        array(
-	            'id' => 'select',
-	            'label' => 'Select',
-	            'desc' => 'This is a description.',
-	            'type' => 'select',
-	            'std' => 'green',
-	            'choices' => array(
-	                'red' => 'Red',
-	                'green' => 'Green',
-	                'blue' => 'Blue'
-	            )
-	        ),
-	        array(
-	            'id' => 'radio',
-	            'label' => 'Radio',
-	            'desc' => 'This is a description.',
-	            'type' => 'radio',
-	            'std' => 'green',
-	            'choices' => array(
-	                'red' => 'Red',
-	                'green' => 'Green',
-	                'blue' => 'Blue'
-	            )
-	        ),
-	        array(
-	            'id' => 'checkbox',
-	            'label' => 'Checkbox',
-	            'desc' => 'This is a description.',
-	            'type' => 'checkbox',
-	            'std' => 1
-	        ),
-	        array(
-	            'id' => 'checkboxes',
-	            'label' => 'Checkboxes',
-	            'desc' => 'This is a description.',
-	            'type' => 'checkboxes',
-	            'std' => array(
-	                'red',
-	                'blue'
-	            ),
-	            'choices' => array(
-	                'red' => 'Red',
-	                'green' => 'Green',
-	                'blue' => 'Blue'
-	            )
-	        )
+				'label'	=> 'Text',
+				'desc'	=> 'This is a description.',
+				'id'	=> 'text',
+				'type'	=> 'text',
+				'std'	=> 'This is std'
+			),
+			array(
+				'label'	=> 'Textarea',
+				'desc'	=> 'This is a description.',
+				'id'	=> 'textarea',
+				'type'	=> 'textarea',
+				'std'	=> 'This is std'
+			),
+			array(
+				'label'	=> 'Select',
+				'desc'	=> 'This is a description.',
+				'id'	=> 'select',
+				'type'	=> 'select',
+				'std'	=> 'green',
+				'choices'	=> array(
+					'red'	=> 'Red',
+					'green'	=> 'Green',
+					'blue'	=> 'Blue'
+				)
+			),
+			array(
+				'label'	=> 'Radio',
+				'desc'	=> 'This is a description.',
+				'id'	=> 'radio',
+				'type'	=> 'radio',
+				'std'	=> 'green',
+				'choices'	=> array(
+					'red'	=> 'Red',
+					'green'	=> 'Green',
+					'blue'	=> 'Blue'
+				)
+			),
+			array(
+				'label'	=> 'Checkbox',
+				'desc'	=> 'This is a description.',
+				'id'	=> 'checkbox',
+				'type'	=> 'checkbox',
+				'std'	=> 1
+			),
+			array(
+				'label'	=> 'Checkboxes',
+				'desc'	=> 'This is a description.',
+				'id'	=> 'checkboxes',
+				'type'	=> 'checkboxes',
+				'std'	=> array(
+					'red',
+					'blue'
+				),
+				'choices'	=> array(
+					'red'	=> 'Red',
+					'green'	=> 'Green',
+					'blue'	=> 'Blue'
+				)
+			)
 		)
 	);
 	dev7_add_meta_box( $meta_box );
