@@ -42,20 +42,15 @@ if( !class_exists( 'Dev7_Meta_Box_Framework' ) ) {
 		}
 		
 		function meta_box_save( $post_id ) {
-			if ( 'page' == $_REQUEST['post_type'] ) {
-				if ( !current_user_can( 'edit_page', $post_id ) )
-					return;
-			} else {
-				if ( !current_user_can( 'edit_post', $post_id ) )
-					return;
-			}
+		
+			if ( !current_user_can( 'edit_page', $post_id ) || !current_user_can( 'edit_post', $post_id ) ) return;
 			
 			if ( !isset( $_POST['dev7_meta_box_nonce'] ) || !wp_verify_nonce( $_POST['dev7_meta_box_nonce'], plugin_basename( __FILE__ ) ) )
 				return;
 			
 			global $dev7_meta_boxes;
-			if( !is_array($dev7_meta_boxes) )
-				return;
+			
+			if( !is_array($dev7_meta_boxes) ) return;
 				
 			foreach( $dev7_meta_boxes as $meta_box ){
 				if( isset($meta_box['fields']) && is_array($meta_box['fields']) ){
@@ -213,6 +208,7 @@ if( !class_exists( 'Dev7_Meta_Box_Framework' ) ) {
 		}
 	    
 	}
+	
 	new Dev7_Meta_Box_Framework();
 	
 }
