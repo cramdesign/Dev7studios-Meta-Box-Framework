@@ -4,7 +4,7 @@
  * 
  * @author Gilbert Pellegrom
  * @link https://github.com/Dev7studios/Dev7studios-Meta-Box-Framework
- * @version 1.0.2
+ * @version 1.0.3
  * @license MIT
  */
 
@@ -142,9 +142,11 @@ if( !class_exists( 'Dev7_Meta_Box_Framework' ) ) {
 								
 								if( isset($field['label']) && $field['label'] ){
 									echo '<th><label for="'. $field['id'] .'">'. $field['label'] .'</label></th> ';
+									echo '<td>';
+								} else {
+									echo '<td colspan="2">';
 								}
 								
-								echo '<td>';
 			
 								switch( $field['type'] ){
 					    		    case 'text':
@@ -220,10 +222,17 @@ if( !function_exists( 'dev7_add_meta_box' ) ) {
 	function dev7_add_meta_box( $meta_box ) {
 		global $dev7_meta_boxes;
 		
-		if( !is_array($dev7_meta_boxes) ) 
-			$dev7_meta_boxes = array();
+		if( !is_array($dev7_meta_boxes) ) $dev7_meta_boxes = array();
 				
 		$dev7_meta_boxes[] = $meta_box;
 	}
 
 }
+
+// simple way to return the value
+function get_metabox( $key = "" ) {
+
+	return get_post_meta( get_the_ID(), $key, true );
+
+}
+
