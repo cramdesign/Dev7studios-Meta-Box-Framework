@@ -77,6 +77,19 @@ function add_custom_meta_boxes() {
 					'green'	=> 'Green',
 					'blue'	=> 'Blue'
 				)
+			),
+			array(
+				'label'	=> 'WYSIWYG',
+				'desc'	=> 'This is a rich content editor.',
+				'type'	=> 'wysiwyg',
+				'id'	=> 'wysiwyg',
+				'args'	=> array( 
+					'media_buttons' => false,
+					'tinymce' => array( 
+						'theme_advanced_buttons1' => 'bold,italic,underline'
+					),
+					'teeny' => true
+				)
 			)
 		)
 	);
