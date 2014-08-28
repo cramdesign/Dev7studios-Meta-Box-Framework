@@ -38,7 +38,7 @@ function add_custom_meta_boxes() {
 				'id'	=> 'select',
 				'type'	=> 'select',
 				'std'	=> 'green',
-				'choices'	=> array(
+				'args'	=> array(
 					'red'	=> 'Red',
 					'green'	=> 'Green',
 					'blue'	=> 'Blue'
@@ -50,7 +50,7 @@ function add_custom_meta_boxes() {
 				'id'	=> 'radio',
 				'type'	=> 'radio',
 				'std'	=> 'green',
-				'choices'	=> array(
+				'args'	=> array(
 					'red'	=> 'Red',
 					'green'	=> 'Green',
 					'blue'	=> 'Blue'
@@ -72,7 +72,7 @@ function add_custom_meta_boxes() {
 					'red',
 					'blue'
 				),
-				'choices'	=> array(
+				'args'	=> array(
 					'red'	=> 'Red',
 					'green'	=> 'Green',
 					'blue'	=> 'Blue'
